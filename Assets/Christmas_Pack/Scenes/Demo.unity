@@ -3275,12 +3275,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38abda73ae82750499364683dc0e98f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f980c0f92d7a5a43a8eab6a49089881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 150
+  m_Width: 2560
+  m_Height: 2560
 --- !u!1001 &1056492515
 PrefabInstance:
   m_ObjectHideFlags: 0

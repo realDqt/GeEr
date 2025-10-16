@@ -39,6 +39,7 @@ public sealed class MyGaussianBlurSinglePass : CustomPostProcessVolumeComponent,
 
     public override void Render(CommandBuffer cmd, HDCamera camera, RTHandle src, RTHandle dest)
     {
+        using (new ProfilingScope(cmd, new ProfilingSampler("My Gaussian Blur (Single Pass)"))) ;
         if (m_Material == null)
         {
             HDUtils.BlitCameraTexture(cmd, src, dest);

@@ -48,6 +48,7 @@ public sealed class ATWSimulationVolume : CustomPostProcessVolumeComponent, IPos
 
     public override void Render(CommandBuffer cmd, HDCamera camera, RTHandle source, RTHandle destination)
     {
+        using (new ProfilingScope(cmd, new ProfilingSampler("ATW Simulation"))) ;
         if (m_Material == null)
             return;
 

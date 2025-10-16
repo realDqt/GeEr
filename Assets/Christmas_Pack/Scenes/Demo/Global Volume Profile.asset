@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3719f7bf137ea944b10da967624f8b9, type: 3}
   m_Name: ATWSimulationVolume
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   atwInverseMatrix:
     e00: 1
     e01: 0
@@ -51,10 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7119cb5cd407e5f4dad431ea37f55b17, type: 3}
   m_Name: MyGaussianBlurSinglePass
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   radius:
     m_OverrideState: 1
-    m_Value: 43.6
+    m_Value: 60
   nearBlurStart:
     m_OverrideState: 1
     m_Value: 2.5
