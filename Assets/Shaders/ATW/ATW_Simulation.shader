@@ -4,7 +4,7 @@ Shader "Hidden/ATW_Simulation"
 {
     Properties
     {
-        _MainTex("Input", 2D) = "white" {}
+        _MainTex ("Main Texture", 2D) = "white" {}
     }
 
     SubShader
@@ -37,6 +37,7 @@ Shader "Hidden/ATW_Simulation"
             };
 
             TEXTURE2D_X(_MainTex);
+            float4 _MainTex_TexelSize;
             
             // The correctional rotation matrix (inverse of the delta rotation)
             float4x4 _ATW_InverseMatrix;
@@ -86,11 +87,14 @@ Shader "Hidden/ATW_Simulation"
                 // the black borders in real ATW when moving too fast. We simulate this.
                 if (oldUV.x < 0.0 || oldUV.x > 1.0 || oldUV.y < 0.0 || oldUV.y > 1.0)
                 {
-                    return float4(0.0, 0.0, 0.0, 1.0); // Black border
+                    //return float4(0.0, 0.0, 0.0, 1.0); // Black border
                 }
 
                 // 7. Sample the original render target at the calculated "old" UV.
-                return SAMPLE_TEXTURE2D_X(_MainTex, s_linear_clamp_sampler, input.uv);
+                //return SAMPLE_TEXTURE2D_X(_MainTex, s_linear_clamp_sampler, input.uv);
+                float3 oriColor = LOAD_TEXTURE2D_X(_MainTex, input.uv * _ScreenSize.xy).rgb;
+                return SAMPLE_TEXTURE2D_X(_MainTex, s_linear_clamp_sampler, oldUV);
+                return float4(oriColor, 1.0);
             }
             ENDHLSL
         }

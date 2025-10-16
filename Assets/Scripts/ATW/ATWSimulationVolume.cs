@@ -11,6 +11,19 @@ public sealed class ATWSimulationVolume : CustomPostProcessVolumeComponent, IPos
     [Tooltip("The ATW inverse matrix, controlled by script.")]
     public Matrix4x4 atwInverseMatrix = Matrix4x4.identity;
 
+    [Header("Manual Rotation Delta (Degrees)")]
+    [Tooltip("左右扭曲效果 (偏航角)")]
+    [Range(-10f, 10f)]
+    public ClampedFloatParameter yaw = new ClampedFloatParameter(0.0f, -10.0f, 10.0f);
+
+    [Tooltip("上下扭曲效果 (俯仰角)")]
+    [Range(-10f, 10f)]
+    public ClampedFloatParameter pitch = new ClampedFloatParameter(0.0f, -10.0f, 10.0f);
+
+    [Tooltip("倾斜扭曲效果 (翻滚角)")]
+    [Range(-10f, 10f)]
+    public ClampedFloatParameter roll = new ClampedFloatParameter(0.0f, -10.0f, 10.0f);
+    
     // This effect is always considered "active" when present on the Volume stack.
     // Its visual effect is enabled/disabled by the ATWController script which sets the matrix.
     public bool IsActive() => true; 
@@ -46,12 +59,20 @@ public sealed class ATWSimulationVolume : CustomPostProcessVolumeComponent, IPos
         var invProjMatrix = camera.mainViewConstants.invProjMatrix;
         
         // Send all required data to the shader
+        // 1. 直接使用Inspector中设置的yaw, pitch, roll值创建一个旋转增量
+        Quaternion deltaRotation = Quaternion.Euler(pitch.value, yaw.value, roll.value);
+        
+        // 2. 计算其逆旋转，这是Shader重投影所需要的
+        Quaternion inverseDelta = Quaternion.Inverse(deltaRotation);
+        
+        // 3. 将逆旋转转换为矩阵，并更新到Volume参数中
+        atwInverseMatrix = Matrix4x4.TRS(Vector3.zero, inverseDelta, Vector3.one);
         m_Material.SetMatrix(k_ATWInverseMatrixID, atwInverseMatrix);
         m_Material.SetMatrix(k_NonJitteredProjMatrixID, projMatrix);
         m_Material.SetMatrix(k_NonJitteredInverseProjMatrixID, invProjMatrix);
         
         // Execute the shader pass to render the effect
-        cmd.Blit(source, destination);
+        cmd.Blit(source, destination, m_Material);
         //HDUtils.DrawFullScreen(cmd, m_Material, destination, null, 0);
     }
 
