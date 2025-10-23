@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8762037911908158961
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d373c7a138089f43b5088c2380fc1bc, type: 3}
+  m_Name: AntiDistortion
+  m_EditorClassIdentifier: 
+  active: 1
+  eyeDist:
+    m_OverrideState: 1
+    m_Value: 0.1
+  fovWidth:
+    m_OverrideState: 1
+    m_Value: 50
+  fovHeight:
+    m_OverrideState: 1
+    m_Value: 100
+  screenWidth:
+    m_OverrideState: 1
+    m_Value: 5
+  screenHeight:
+    m_OverrideState: 1
+    m_Value: 10
+  kR:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1}
+  kG:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1}
+  kB:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1}
 --- !u!114 &-3947888375591460782
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -12,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3719f7bf137ea944b10da967624f8b9, type: 3}
   m_Name: ATWSimulationVolume
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   atwInverseMatrix:
     e00: 1
     e01: 0
@@ -32,13 +69,13 @@ MonoBehaviour:
     e33: 1
   yaw:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -0.53
   pitch:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -1.5
   roll:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -0.86
 --- !u!114 &-2604842369997570921
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -54,7 +91,7 @@ MonoBehaviour:
   active: 1
   radius:
     m_OverrideState: 1
-    m_Value: 60
+    m_Value: 48.8
   nearBlurStart:
     m_OverrideState: 1
     m_Value: 2.5
@@ -82,3 +119,4 @@ MonoBehaviour:
   components:
   - {fileID: -2604842369997570921}
   - {fileID: -3947888375591460782}
+  - {fileID: -8762037911908158961}

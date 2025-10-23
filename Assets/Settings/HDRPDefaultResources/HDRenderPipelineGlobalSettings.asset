@@ -72,6 +72,7 @@ MonoBehaviour:
   - MyGaussianBlurSinglePass, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
     PublicKeyToken=null
   - ATWSimulationVolume, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - AntiDistortion, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   beforeTAACustomPostProcesses: []
   lightLayerName0: Light Layer default
   lightLayerName1: Light Layer 1
