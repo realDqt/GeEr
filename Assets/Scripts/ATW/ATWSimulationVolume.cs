@@ -61,7 +61,11 @@ public sealed class ATWSimulationVolume : CustomPostProcessVolumeComponent, IPos
         
         // Send all required data to the shader
         // 1. 直接使用Inspector中设置的yaw, pitch, roll值创建一个旋转增量
-        Quaternion deltaRotation = Quaternion.Euler(pitch.value, yaw.value, roll.value);
+        // random test
+        float rPitch = UnityEngine.Random.Range(0f, 1.5f);
+        float rYaw = UnityEngine.Random.Range(0f, 1.5f);
+        float rRoll = UnityEngine.Random.Range(0f, 0.5f);
+        Quaternion deltaRotation = Quaternion.Euler(rPitch, rYaw, rRoll);
         
         // 2. 计算其逆旋转，这是Shader重投影所需要的
         Quaternion inverseDelta = Quaternion.Inverse(deltaRotation);
