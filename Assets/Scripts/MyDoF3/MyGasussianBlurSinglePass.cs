@@ -20,12 +20,15 @@ public sealed class MyGaussianBlurSinglePass : CustomPostProcessVolumeComponent,
     [Tooltip("远景模糊最强的距离（超过此距离模糊达到最大）。")]
     public MinFloatParameter farBlurEnd = new MinFloatParameter(50f, 0f);
     
+    public BoolParameter enabled = new BoolParameter(true);
+    
 
     public bool IsActive() => m_Material != null && 
                               radius.value > 0 && 
                               nearBlurEnd.value > nearBlurStart.value && 
                               farBlurStart.value < farBlurEnd.value && 
-                              nearBlurEnd.value < farBlurStart.value;
+                              nearBlurEnd.value < farBlurStart.value &&
+                              enabled.value;
 
     public override CustomPostProcessInjectionPoint injectionPoint =>
         CustomPostProcessInjectionPoint.AfterPostProcess;

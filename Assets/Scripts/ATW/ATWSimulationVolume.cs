@@ -23,10 +23,12 @@ public sealed class ATWSimulationVolume : CustomPostProcessVolumeComponent, IPos
     [Tooltip("倾斜扭曲效果 (翻滚角)")]
     [Range(-10f, 10f)]
     public ClampedFloatParameter roll = new ClampedFloatParameter(0.0f, -10.0f, 10.0f);
+
+    public BoolParameter enabled = new BoolParameter(true);
     
     // This effect is always considered "active" when present on the Volume stack.
     // Its visual effect is enabled/disabled by the ATWController script which sets the matrix.
-    public bool IsActive() => true; 
+    public bool IsActive() => true && enabled.value; 
 
     // We inject this effect after all other standard post-processing to ensure it's the last thing applied.
     public override CustomPostProcessInjectionPoint injectionPoint => CustomPostProcessInjectionPoint.AfterPostProcess;

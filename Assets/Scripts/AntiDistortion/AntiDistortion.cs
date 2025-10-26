@@ -42,6 +42,8 @@ public sealed class AntiDistortion : CustomPostProcessVolumeComponent, IPostProc
     public Vector3Parameter kB = new Vector3Parameter(new Vector3(1, 1, 1));
 
 
+    public BoolParameter enabled = new BoolParameter(true);
+    
     // --- 2. 核心方法实现 ---
 
     // 告诉 HDRP 这个效果应该在何时注入
@@ -49,7 +51,7 @@ public sealed class AntiDistortion : CustomPostProcessVolumeComponent, IPostProc
 
     // IsActive 决定了 Render 方法是否会被调用
     // 只有当材质存在并且用户在 Volume 中勾选了 "enable" 时，才激活
-    public bool IsActive() => m_Material != null;
+    public bool IsActive() => m_Material != null && enabled.value;
 
     private Material m_Material;
 
