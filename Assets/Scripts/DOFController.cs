@@ -9,12 +9,16 @@ public class DOFController : MonoBehaviour
     public Volume globalVolume; // 用于在 Inspector 中直接指定 Volume，更高效
     public GameObject focusGameObject;
     public Camera dofCamera;
+    // 等待EyeTracking bug修复
+    public bool useEyeTracking = false;
+    public Vector3 eyeTrackingPosition = Vector3.zero;
 
+    // 调整这两个参数，让模糊与清晰边界合适
     public float nearOffset = 1.0f;
     public float farOffset = 1.0f;
     
     private MyGaussianBlurSinglePass myGaussianBlur; // 缓存自定义效果的引用
-    private Transform focusTransform;
+    private Vector3 focusPosition;
     
     void Start()
     {
@@ -44,13 +48,13 @@ public class DOFController : MonoBehaviour
         {
             Debug.LogError("在指定的 Volume Profile 中没有找到 MyGaussianBlurSinglePass！请检查 Volume Profile 的设置。");
         }
-
-        focusTransform = focusGameObject.GetComponent<Transform>();
+        
     }
 
     void Update()
     {
-        float depth = CalcDepthFromDOFCamera(dofCamera, focusTransform.position);
+        focusPosition = useEyeTracking ? eyeTrackingPosition : focusGameObject.GetComponent<Transform>().position;
+        float depth = CalcDepthFromDOFCamera(dofCamera, focusPosition);
         Debug.Log("focus game object's depth = " + depth);
 
         myGaussianBlur.nearBlurEnd.value = depth - nearOffset;

@@ -80,6 +80,7 @@ public sealed class ATWSimulationVolume : CustomPostProcessVolumeComponent, IPos
         float rRoll = UnityEngine.Random.Range(0f, 0.1f);
         Quaternion deltaRotation = Quaternion.Euler(rPitch, rYaw, rRoll);
         if(!wrap) deltaRotation = Quaternion.Euler(0, 0, 0);
+        deltaRotation = Quaternion.Euler(0, 0, 0); // zero it
         
         // 2. 计算其逆旋转，这是Shader重投影所需要的
         Quaternion inverseDelta = Quaternion.Inverse(deltaRotation);

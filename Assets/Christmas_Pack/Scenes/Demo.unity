@@ -1753,7 +1753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &635517344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,6 +1769,8 @@ MonoBehaviour:
   globalVolume: {fileID: 1733026708}
   focusGameObject: {fileID: 6622195493489400786}
   dofCamera: {fileID: 963194227}
+  useEyeTracking: 0
+  eyeTrackingPosition: {x: 0, y: 0, z: -0.48}
   nearOffset: 0.01
   farOffset: 0.8
 --- !u!4 &635517345
@@ -2188,7 +2190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &821912653
 Transform:
   m_ObjectHideFlags: 0
@@ -12669,7 +12671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!111 &6622195493489400787
 Animation:
   m_ObjectHideFlags: 0
